@@ -17,32 +17,31 @@ public class Rental {
 		return _movie;
 	}
 
-	public double getCharge() {
-		double thisAmount = 0;
-		switch (getMovie().getPriceCode()) {
-			case Movie.REGULAR:
-				thisAmount += 2;
-				if (getDaysRented() > 2)
-				thisAmount += (getDaysRented() - 2) * 1.5;
-				break;
-			case Movie.NEW_RELEASE:
-				thisAmount += getDaysRented() * 3;
-				break;
-			case Movie.CHILDRENS:
-				thisAmount += 1.5;
-				if (getDaysRented() > 3)
-					thisAmount += (getDaysRented() - 3) * 1.5;
-				break;
-			default: break;
-		}
-		return thisAmount;
-	}
+	public double getCharge(int daysRented) {
+		 double result = 0;
+		 switch (getPriceCode()) {
+		 case Movie.REGULAR:
+		 result += 2;
+		 if (daysRented > 2)
+		 result += (daysRented - 2) * 1.5;
+		 break;
+		 case Movie.NEW_RELEASE:
+		 result += daysRented * 3;
+		 break;
+		 case Movie.CHILDRENS:
+		 result += 1.5;
+		 if (daysRented > 3)
+		 result += (daysRented - 3) * 1.5;
+		 break;
+		 }
+		 return result;
+		 }
 
-	public int getFrequentRenterPoints() {
-		if ((getMovie().getPriceCode() == Movie.NEW_RELEASE) && getDaysRented() > 1)
-			return 2;
-		else
-			return 1;
-	}
+
+	 
+	 int getFrequentRenterPoints() {
+		 return _movie.getFrequentRenterPoints(_daysRented);
+		 }
+	
 
 }
